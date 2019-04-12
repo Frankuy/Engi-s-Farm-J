@@ -1,5 +1,5 @@
 public class Coop extends Land implements Renderable {
-    public Coop(Point lokasi) {
+    public Coop(Point<Integer> lokasi) {
         super(lokasi);
     }
     public char render() {

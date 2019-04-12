@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class Cell {
-    private Renderable map[][];
+    private Renderable[][] map;
     private LinkedList<FarmAnimal> liveAnimal;
     private final int nKol;
     private final int nBrs;
@@ -19,24 +19,24 @@ public class Cell {
     public int getnBrs() { return nBrs; }
     public int getnKol() { return nKol; }
 
-    public void setMap(Point lokasi, Renderable o) {
+    public void setMap(Point<Integer> lokasi, Renderable o) {
         map[lokasi.getY()][lokasi.getX()] = o;
     }
-    public Renderable getMap(Point lokasi) {
+    public Renderable getMap(Point<Integer> lokasi) {
         return map[lokasi.getY()][lokasi.getX()];
     }
-    public void setRumputCell(Point lokasi, boolean rumput) {
-        if (getMap(lokasi).getClass().getName() == "Coop") {
+    public void setRumputCell(Point<Integer> lokasi, boolean rumput) {
+        if (getMap(lokasi).getClass().getName().equals("Coop")) {
             Coop c = new Coop(lokasi);
             c.setRumput(rumput);
             setMap(lokasi, c);
         }
-        else if (getMap(lokasi).getClass().getName() == "Barn") {
+        else if (getMap(lokasi).getClass().getName().equals("Barn")) {
 //            Barn b = new Barn(lokasi);
 //            b.setRumput(rumput);
 //            setMap(lokasi, b);
         }
-        else if (getMap(lokasi).getClass().getName() == "Grassland") {
+        else if (getMap(lokasi).getClass().getName().equals("Grassland")) {
 //            Grassland g = new Grassland(lokasi);
 //            g.setRumput(rumput);
 //            setMap(lokasi, g);
@@ -48,7 +48,7 @@ public class Cell {
         while (animal.size() != 0) {
             Renderable a = animal.pop();
             if (a.getClass().getName().equals("Ayam")) {
-                Point lokasi = new Point(Integer.parseInt(a.getStatus(2)), Integer.parseInt(a.getStatus(3)));
+                Point<Integer> lokasi = new Point<>(Integer.parseInt(a.getStatus(2)), Integer.parseInt(a.getStatus(3)));
                 Ayam ayam = new Ayam(a.getStatus(0), lokasi, Integer.parseInt(a.getStatus(5)));
                 ayam.setTicks(Integer.parseInt(a.getStatus(4)));
                 ayam.setLapar(Boolean.parseBoolean(a.getStatus(6)));
@@ -65,8 +65,8 @@ public class Cell {
         boolean write = false;
         for(int i = 0; i < getnBrs(); i++) {
             for(int j = 0; j < getnKol(); j++) {
-                Renderable currentcell = getMap(new Point(j,i));
-                if (p.getLokasi().equal(new Point(j,i))) {
+                Renderable currentCell = getMap(new Point<>(j,i));
+                if (p.getLokasi().compareTo(new Point<>(j,i)) == 0) {
                     System.out.print("P");
                     write = true;
                 }
@@ -78,8 +78,8 @@ public class Cell {
                         }
                     }
                 }
-                if (currentcell != null && !write) {
-                    System.out.print(currentcell.render());
+                if (currentCell != null && !write) {
+                    System.out.print(currentCell.render());
                 }
                 else if (!write) {
                     System.out.print("-");
@@ -95,12 +95,12 @@ public class Cell {
 
     public static void main(String[] args) {
         Cell cell = new Cell();
-        Coop c = new Coop(new Point(0,0));
+        Coop c = new Coop(new Point<>(0,0));
         Player p = new Player();
-        cell.setMap(new Point(0,0), c);
+        cell.setMap(new Point<>(0,0), c);
 //        cell.print();
 
-        cell.setRumputCell(new Point(0,0), true);
+        cell.setRumputCell(new Point<>(0,0), true);
         System.out.println();
 //        cell.print();
     }

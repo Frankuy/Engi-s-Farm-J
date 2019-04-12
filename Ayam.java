@@ -6,14 +6,14 @@ import java.util.Random;
 public class Ayam implements EggProducing, MeatProducing, Renderable {
     private String nama;
     private String suara;
-    private Point lokasi;
+    private Point<Integer> lokasi;
     private int ticks;
     private int waktuLapar;
     private boolean lapar;
     private boolean produceAbleMeat;
     private boolean produceAbleEgg;
 
-    Ayam(String nama, Point lokasi, int waktuLapar) {
+    Ayam(String nama, Point<Integer> lokasi, int waktuLapar) {
         this.nama = nama;
         this.suara = "Kukuruuyuuk";
         this.lokasi = lokasi;
@@ -32,6 +32,17 @@ public class Ayam implements EggProducing, MeatProducing, Renderable {
     public int getTicks() {
         return ticks;
     }
+
+    @Override
+    public void produceEgg() {
+        produceAbleEgg = true;
+    }
+
+    @Override
+    public void produceMeat() {
+        produceAbleMeat = true;
+    }
+
     public boolean isLapar() {
         return lapar;
     }
@@ -54,8 +65,8 @@ public class Ayam implements EggProducing, MeatProducing, Renderable {
         lapar = l;
     }
     public void produce() {
-        produceAbleEgg = true;
-        produceAbleMeat = true;
+        produceEgg();
+        produceMeat();
     }
 
     public void gerak(Cell c) {

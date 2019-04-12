@@ -2,9 +2,9 @@ import java.util.Random;
 
 public class Land {
     protected boolean rumput;
-    protected Point lokasi;
+    protected Point<Integer> lokasi;
 
-    Land(Point lokasi) {
+    Land(Point<Integer> lokasi) {
         this.lokasi = lokasi;
         Random rand = new Random();
         int n = rand.nextInt(2);
@@ -15,7 +15,7 @@ public class Land {
             rumput = true;
         }
     }
-    public Point getLokasi() {
+    public Point<Integer> getLokasi() {
         return lokasi;
     }
     public void setRumput(boolean rumput) {

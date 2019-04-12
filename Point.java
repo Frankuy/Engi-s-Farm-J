@@ -1,30 +1,33 @@
-public class Point {
-    private int x;
-    private int y;
+public class Point<T extends Number> implements Comparable<Point<T>> {
+    private T x;
+    private T y;
 
-    public Point() { x = 0; y = 0; }
+    public Point(T _x, T _y) { x = _x; y = _y; }
 
-    public Point(int _x, int _y) { x = _x; y = _y; }
-
-    public int getX(){
+    public T getX(){
         return x;
     }
-    public int getY(){
+    public T getY(){
         return y;
     }
-    public void setX(int _x) {
+    public void setX(T _x) {
         x = _x;
     }
-    public void setY(int _y) {
+    public void setY(T _y) {
         y = _y;
     }
 
+    @Override
+    public int compareTo(Point<T> o) {
+        if (o.x.equals(x) && o.y.equals(y)) return 0;
+        else return -1;
+    }
+
     public String print() { return "(" + x + "," + y + ")"; }
-    public boolean equal(Point p) { return x == p.x && y == p.y; }
 
     public static void main(String args[]) {
-        Point test = new Point();
-        Point test2 = new Point(10,2);
+        Point test = new Point<>(2,2);
+        Point test2 = new Point<>(10,2);
         System.out.println(test.print());
         System.out.println(test2.print());
         if (test.equals(test2)) System.out.println(test.print());

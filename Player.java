@@ -6,7 +6,7 @@ public class Player {
     private LinkedList<Product> tas;
     private final int kapasitasEmber;
     private final int kapasitasTas;
-    private Point lokasi;
+    private Point<Integer> lokasi;
     private int uang;
 
     public Player(){
@@ -14,11 +14,11 @@ public class Player {
         tas = new LinkedList<Product>();
         kapasitasEmber = 10;
         kapasitasTas = 10;
-        lokasi = new Point();
+        lokasi = new Point<Integer>(0,0);
         uang = 0;
     }
 
-    public Player(int e, int ke, int kt, Point l, int u){
+    public Player(int e, int ke, int kt, Point<Integer> l, int u){
         ember = e;
         tas = new LinkedList<Product>();
         kapasitasEmber = ke;
@@ -30,7 +30,7 @@ public class Player {
     public int getEmber() {return ember;}
     public int getKapasitasEmber() {return kapasitasEmber;}
     public int getKapasitasTas() {return kapasitasTas;}
-    public Point getLokasi() {return lokasi;}
+    public Point<Integer> getLokasi() {return lokasi;}
     public int getUang() {return uang;}
     public LinkedList<Product> getTas() { return tas; }
 
@@ -43,11 +43,11 @@ public class Player {
             tas.remove(p);
         }
     }
-    public void setLokasi(Point l) { lokasi = l; }
+    public void setLokasi(Point<Integer> l) { lokasi = l; }
     public void setUang(int u){ uang = u; }
 
     public String lihatTas() {
-        String listTas = new String();
+        String listTas = "";
         for (Product p : tas) {
             listTas += "- " + p.print() + "\n";
         }
@@ -55,7 +55,7 @@ public class Player {
     }
 
     public String status() {
-        String st = new String();
+        String st = "";
         st += "Ember = " + ember + "/" + kapasitasEmber + "\n";
         st += "Uang = " + uang + "\n";
         st += "Tas = " + tas.size() + "/" + kapasitasTas +"\n" + lihatTas();
@@ -66,7 +66,7 @@ public class Player {
         boolean valid = true;
         if (direction.equals("UP")) {
             if (lokasi.getY() - 1 >= 0) {
-                Point newLokasi = new Point(lokasi.getX(),lokasi.getY() - 1);
+                Point<Integer> newLokasi = new Point<Integer>(lokasi.getX(),lokasi.getY() - 1);
                 for (Renderable animal : liveAnimal) {
                     if (animal.getStatus(2).equals(Integer.toString(newLokasi.getX())) && animal.getStatus(3).equals(Integer.toString(newLokasi.getY()))) {
                         System.out.println("Waduh, ada binatang gan");
@@ -84,7 +84,7 @@ public class Player {
         }
         else if (direction.equals("DOWN")) {
             if (lokasi.getY() + 1 < c.getnBrs()) {
-                Point newLokasi = new Point(lokasi.getX(),lokasi.getY() + 1);
+                Point<Integer> newLokasi = new Point<>(lokasi.getX(),lokasi.getY() + 1);
                 for (Renderable animal : liveAnimal) {
                     if (animal.getStatus(2).equals(Integer.toString(newLokasi.getX())) && animal.getStatus(3).equals(Integer.toString(newLokasi.getY()))) {
                         System.out.println("Waduh, ada binatang gan");
@@ -102,7 +102,7 @@ public class Player {
         }
         else if (direction.equals("RIGHT")) {
             if (lokasi.getX() + 1 < c.getnKol()) {
-                Point newLokasi = new Point(lokasi.getX() + 1,lokasi.getY());
+                Point<Integer> newLokasi = new Point<>(lokasi.getX() + 1,lokasi.getY());
 
                 for (Renderable animal : liveAnimal) {
                     if (animal.getStatus(2).equals(Integer.toString(newLokasi.getX())) && animal.getStatus(3).equals(Integer.toString(newLokasi.getY()))) {
@@ -121,7 +121,7 @@ public class Player {
         }
         else if (direction.equals("LEFT")) {
             if (lokasi.getX() - 1 >= 0) {
-                Point newLokasi = new Point(lokasi.getX() - 1,lokasi.getY());
+                Point<Integer> newLokasi = new Point<>(lokasi.getX() - 1,lokasi.getY());
                 for (Renderable animal : liveAnimal) {
                     if (animal.getStatus(2).equals(Integer.toString(newLokasi.getX())) && animal.getStatus(3).equals(Integer.toString(newLokasi.getY()))) {
                         System.out.println("Waduh, ada binatang gan");
@@ -143,7 +143,7 @@ public class Player {
             if (a.getClass().getName().equals("Ayam")) {
                 TelorAyam telor = new TelorAyam();
                 setTas(true, telor);
-                Point lokasi = new Point(Integer.parseInt(a.getStatus(2)), Integer.parseInt(a.getStatus(3)));
+                Point<Integer> lokasi = new Point<>(Integer.parseInt(a.getStatus(2)), Integer.parseInt(a.getStatus(3)));
                 Ayam ayam = new Ayam(a.getStatus(0), lokasi, Integer.parseInt(a.getStatus(5)));
                 ayam.setTicks(Integer.parseInt(a.getStatus(4)));
                 ayam.setLapar(Boolean.parseBoolean(a.getStatus(6)));
@@ -153,24 +153,20 @@ public class Player {
         }
         return a;
     }
-    public boolean killAnimal(Renderable a, Cell c) {
+    public boolean killAnimal(Renderable a) {
         if (a.getStatus(7).equals("true")) {
             if (a.getClass().getName().equals("Ayam")) {
                 DagingAyam daging = new DagingAyam();
                 setTas(true, daging);
-//                Ayam ayam = new Ayam(a.getStatus(0), lokasi, Integer.parseInt(a.getStatus(5)));
-//                ayam.setTicks(Integer.parseInt(a.getStatus(4)));
-//                ayam.setLapar(Boolean.parseBoolean(a.getStatus(6)));
-//                ayam.setProduceAbleMeat(false);
                 return true; //kill
             }
         }
         return false;
     }
 
-    public static void main(String args[]) {
+    public static void main(String []args) {
         Player p = new Player();
-        LinkedList<Renderable> test = new LinkedList<Renderable>();
+        LinkedList<Renderable> test = new LinkedList<>();
         for (int i = 0; i < 3; i++) {
             p.setTas(true, new Product("ahau", 20));
         }
@@ -180,15 +176,15 @@ public class Player {
         System.out.println();
 
         p.gerak("DOWN", c, test);
-        c.print(p,new LinkedList<Renderable>());
+        c.print(p,new LinkedList<>());
         System.out.println();
 
         p.gerak("LEFT", c, test);
-        c.print(p,new LinkedList<Renderable>());
+        c.print(p,new LinkedList<>());
         System.out.println();
 
         p.gerak("UP", c, test);
-        c.print(p,new LinkedList<Renderable>());
+        c.print(p,new LinkedList<>());
         System.out.println();
 
         System.out.print(p.status());
