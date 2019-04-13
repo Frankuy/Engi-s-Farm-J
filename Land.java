@@ -4,7 +4,7 @@ public class Land {
     protected boolean rumput;
     protected Point<Integer> lokasi;
 
-    Land(Point<Integer> lokasi) {
+    public Land(Point<Integer> lokasi) {
         this.lokasi = lokasi;
         Random rand = new Random();
         int n = rand.nextInt(2);

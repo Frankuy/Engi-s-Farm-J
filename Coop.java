@@ -1,12 +1,17 @@
-public class Coop extends Land implements Renderable {
-    public Coop(Point<Integer> lokasi) {
+public class Coop extends Land implements Renderable
+{
+    public Coop(Point<Integer> lokasi)
+    {
         super(lokasi);
     }
-    public char render() {
-        if (getRumput()) return 'v';
-        else return 'C';
+    
+    public char render()
+    {
+		return this.getRumput() ? '*' : 'C';
     }
-    public String getStatus(int i) {
+    
+    public String getStatus(int i)
+    {
         String[] status = new String[3];
         status[0] = Integer.toString(lokasi.getX());
         status[1] = Integer.toString(lokasi.getY());
