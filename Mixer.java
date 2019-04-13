@@ -1,8 +1,17 @@
-public class Mixer implements Renderable {
-    public char render() {
+public class Mixer extends Facility implements Renderable
+{
+	public Mixer(Point<Integer> lokasi)
+	{
+		super(lokasi);
+	}
+	
+    public char render()
+    {
         return 'M';
     }
-    public String getStatus(int i) {
+    
+    public String getStatus(int i)
+    {
         return null;
     }
 }
