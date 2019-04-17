@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+   <children>
+      <ImageView disable="true" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+         <image>
+            <Image url="@beautiful-farm-landscape-background-vector-8233837.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="61.0" fitWidth="200.0" layoutX="200.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@engisfarmlogo.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="commandEntry" layoutX="316.0" layoutY="349.0" onAction="#enterCommand" prefHeight="25.0" prefWidth="168.0" promptText="Enter Command" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="116.0" />
+      <Button fx:id="commandButton" layoutX="493.0" layoutY="349.0" mnemonicParsing="false" onMouseClicked="#runCommand" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #823e00;" text="Command" textFill="WHITE" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="26.0">
+         <font>
+            <Font name="Alfa Slab One Regular" size="10.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="6.17" radius="3.3275" width="9.14" />
+         </effect></Button>
+      <TextArea fx:id="gameStatus" cache="true" cacheHint="SCALE" editable="false" focusTraversable="false" layoutX="317.0" layoutY="107.0" prefHeight="237.0" prefWidth="257.0" wrapText="true" />
+      <Label layoutX="317.0" layoutY="78.0" text="GAME STATUS" textFill="#ff6300">
+         <font>
+            <Font name="Alfa Slab One Regular" size="12.0" />
+         </font>
+      </Label>
+      <StackPane fx:id="mapImage" layoutX="29.0" layoutY="107.0" prefHeight="269.0" prefWidth="257.0" />
+   </children>
+</AnchorPane>

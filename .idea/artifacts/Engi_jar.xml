@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Engi:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Engi_jar</output-path>
+    <root id="archive" name="Engi's Farm.jar">
+      <element id="module-output" name="Engi" />
+    </root>
+  </artifact>
+</component>
