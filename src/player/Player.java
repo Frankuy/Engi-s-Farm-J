@@ -211,19 +211,19 @@ public class Player {
         }
         Cell c = new Cell();
         p.gerak("RIGHT", c, test);
-//        c.print(p,test);
+        c.print(p,test);
         System.out.println();
 
         p.gerak("DOWN", c, test);
-//        c.print(p,new LinkedList<>());
+        c.print(p,new LinkedList<>());
         System.out.println();
 
         p.gerak("LEFT", c, test);
-//        c.print(p,new LinkedList<>());
+        c.print(p,new LinkedList<>());
         System.out.println();
 
         p.gerak("UP", c, test);
-//        c.print(p,new LinkedList<>());
+        c.print(p,new LinkedList<>());
         System.out.println();
 
         System.out.print(p.status());
