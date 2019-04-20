@@ -169,7 +169,8 @@ public class MainController implements Initializable {
                         Point<Integer> animalLokasi = new Point<>(Integer.parseInt(animal.getStatus(2)),Integer.parseInt(animal.getStatus(3)));
                         if (animalLokasi.compareTo(new Point<>(i,j)) == 0 && !animalthere) {
                             animalthere = true;
-                            gridview.getChildren().addAll(rect, new Label(Character.toString(animal.render())));
+                            if (animal.getStatus(6).equals("true")) gridview.getChildren().addAll(rect, new Label(animal.render() + "*"));
+                            else gridview.getChildren().addAll(rect, new Label(Character.toString(animal.render())));
                         }
                     }
                     if (!animalthere) {
