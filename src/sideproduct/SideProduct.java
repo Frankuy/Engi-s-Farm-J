@@ -4,8 +4,9 @@ import product.Product;
 import tools.Renderable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class SideProduct extends Product {
+public class SideProduct extends Product implements Iterable {
     private ArrayList<Product> recipes;
 
     public SideProduct(String nama, int harga, ArrayList<Product> recipes) {
@@ -27,5 +28,10 @@ public class SideProduct extends Product {
             resep += "- " + prod.getNama() + "\n ";
         }
         return resep;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return recipes.iterator();
     }
 }

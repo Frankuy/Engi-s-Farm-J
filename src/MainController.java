@@ -1,6 +1,4 @@
-import animal.Ayam;
-import animal.Bebek;
-import animal.FarmAnimal;
+import animal.*;
 import cell.Cell;
 
 import facility.Mixer;
@@ -64,9 +62,6 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //Initialize player and cell
         player = new Player();
-        //TODO: INI HABIS TES DIHAPUS
-        player.setTas(true, new DagingAyam());
-        player.setTas(true, new SusuSapi());
         cell = new Cell();
         farmAnimal = new LinkedList<>();
         //Make Grid
@@ -117,6 +112,16 @@ public class MainController implements Initializable {
         insertAnimal(ayam);
         Bebek bebek = new Bebek("Beb", new Point<>(3,3), 10);
         insertAnimal(bebek);
+        Kambing kambing = new Kambing("Kams", new Point<>(7,2), 15);
+        insertAnimal(kambing);
+        Sapi sapi = new Sapi("Sup", new Point<>(7,1), 20);
+        insertAnimal(sapi);
+        Domba domba = new Domba("Domsky", new Point<>(6,1), 10);
+        insertAnimal(domba);
+        Kuda kuda = new Kuda("KudI", new Point<>(3, 7), 25);
+        insertAnimal(kuda);
+        kuda = new Kuda("Kudo", new Point<>(7, 7), 25);
+        insertAnimal(kuda);
 
         //Colouring grid
         colourGrid();
@@ -369,10 +374,13 @@ public class MainController implements Initializable {
         else if (animalLokasi.compareTo(player.getLokasi()) == 0) {
         }
         else {
-            if (o.getClass().getName().equals("animal.Ayam") && cell.getMap(animalLokasi).getClass().getName().equals("land.Coop")) {
+            if ((o.getClass().getName().equals("animal.Ayam") || o.getClass().getName().equals("animal.Bebek")) && (cell.getMap(animalLokasi).getClass().getName().equals("land.Coop"))) {
                 farmAnimal.add(o);
             }
-            else if (o.getClass().getName().equals("animal.Bebek") && cell.getMap(animalLokasi).getClass().getName().equals("land.Coop")) {
+            else if ((o.getClass().getName().equals("animal.Kambing") || o.getClass().getName().equals("animal.Sapi") || o.getClass().getName().equals("animal.Domba")) && cell.getMap(animalLokasi).getClass().getName().equals("land.Barn")) {
+                farmAnimal.add(o);
+            }
+            else if ((o.getClass().getName().equals("animal.Kuda")) && cell.getMap(animalLokasi).getClass().getName().equals("land.Grassland")) {
                 farmAnimal.add(o);
             }
         }
